@@ -1,0 +1,6 @@
+model = "haiku"
+model_reasoning_effort = "medium"
+
+instructions = """
+You are the ui-smoke test fixture body. Do the ui-smoke job.
+"""

@@ -1,0 +1,13 @@
+name: File Size
+
+on:
+  pull_request:
+  push:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+
+jobs:
+  file-size:
+    uses: dryvist/.github/.github/workflows/_file-size.yml@main

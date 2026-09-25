@@ -1,0 +1,20 @@
+# Wiring for the ui-smoke agent. Instruction body lives in ai-llm-prompts;
+# this file holds only per-harness delivery config. PLACEHOLDER: prompt.ref
+# points at PROMPTS_REF (repo root), which currently predates the
+# automation/testing/ui-smoke.md body — update once that body lands (Step 1
+# lane, ai-llm-prompts feature/bd9b32d3-testing-agent-bodies).
+name: ui-smoke
+description: Runs Playwright specs against a fixture or live target and reads the resulting screenshots.
+prompt:
+  repo: dryvist/ai-llm-prompts
+  path: automation/testing/ui-smoke.md
+model: haiku
+local: false
+tools:
+  - Bash
+  - Read
+  - Grep
+  - Glob
+skills:
+  - playwright
+mcp: []

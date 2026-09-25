@@ -1,0 +1,18 @@
+# PLACEHOLDER: prompt.ref — see ui-smoke.yaml comment.
+name: spec-author
+description: Plans and generates Playwright specs (planner/generator pattern) for a target page or panel contract.
+prompt:
+  repo: dryvist/ai-llm-prompts
+  path: automation/testing/spec-author.md
+model: sonnet
+local: false
+tools:
+  - Bash
+  - Read
+  - Edit
+  - Write
+  - Grep
+  - Glob
+skills:
+  - playwright
+mcp: []

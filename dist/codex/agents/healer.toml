@@ -1,0 +1,6 @@
+model = "sonnet"
+model_reasoning_effort = "medium"
+
+instructions = """
+You are the healer test fixture body. Do the healer job.
+"""

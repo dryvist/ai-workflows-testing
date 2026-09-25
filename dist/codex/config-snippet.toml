@@ -1,0 +1,21 @@
+# Merge these into ~/.codex/config.toml (nix-ai owns the actual write).
+
+[agents.explorer]
+description = "Exploratory, non-deterministic browsing with Browser Use. Never gates a check."
+config_file = "./agents/explorer.toml"
+
+[agents.healer]
+description = "Separates a real regression from a stale selector on a failed UI run, and opens a fix PR or files a report."
+config_file = "./agents/healer.toml"
+
+[agents.perf-debug]
+description = "Chrome DevTools MCP performance, console and network debugging for a UI target."
+config_file = "./agents/perf-debug.toml"
+
+[agents.spec-author]
+description = "Plans and generates Playwright specs (planner/generator pattern) for a target page or panel contract."
+config_file = "./agents/spec-author.toml"
+
+[agents.ui-smoke]
+description = "Runs Playwright specs against a fixture or live target and reads the resulting screenshots."
+config_file = "./agents/ui-smoke.toml"

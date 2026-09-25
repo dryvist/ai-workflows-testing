@@ -1,0 +1,9 @@
+model = "sonnet"
+model_reasoning_effort = "medium"
+
+[mcp_servers.chrome-devtools]
+command = "chrome-devtools"
+
+instructions = """
+You are the perf-debug test fixture body. Do the perf-debug job.
+"""

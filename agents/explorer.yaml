@@ -1,0 +1,15 @@
+# PLACEHOLDER: prompt.ref — see ui-smoke.yaml comment.
+# Non-gating: exploratory Browser Use runs only, never a merge-blocking check.
+name: explorer
+description: Exploratory, non-deterministic browsing with Browser Use. Never gates a check.
+prompt:
+  repo: dryvist/ai-llm-prompts
+  path: automation/testing/explorer.md
+model: sonnet
+local: false
+tools:
+  - Bash
+  - Read
+skills: []
+mcp:
+  - browser-use

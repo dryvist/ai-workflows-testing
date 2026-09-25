@@ -1,0 +1,6 @@
+model = "sonnet"
+model_reasoning_effort = "medium"
+
+instructions = """
+You are the spec-author test fixture body. Do the spec-author job.
+"""

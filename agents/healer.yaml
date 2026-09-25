@@ -1,0 +1,18 @@
+# PLACEHOLDER: prompt.ref — see ui-smoke.yaml comment.
+name: healer
+description: Separates a real regression from a stale selector on a failed UI run, and opens a fix PR or files a report.
+prompt:
+  repo: dryvist/ai-llm-prompts
+  path: automation/testing/healer.md
+model: sonnet
+local: false
+tools:
+  - Bash
+  - Read
+  - Edit
+  - Write
+  - Grep
+  - Glob
+skills:
+  - playwright
+mcp: []

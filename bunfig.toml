@@ -1,0 +1,5 @@
+[test]
+# specs/*.spec.ts is a Playwright suite, not a bun:test suite — bun's default
+# test glob would otherwise try to import it (and @playwright/test, which
+# this repo doesn't depend on — the caller repo supplies it at run time).
+root = "tests"

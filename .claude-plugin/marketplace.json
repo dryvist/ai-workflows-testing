@@ -1,0 +1,22 @@
+{
+  "name": "ai-workflows-testing",
+  "owner": {
+    "name": "JacobPEvans",
+    "email": "20714140+JacobPEvans@users.noreply.github.com"
+  },
+  "metadata": {
+    "description": "UI testing agents for Claude Code, generated from ai-workflows-testing's agent wiring.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "testing-agents",
+      "source": "./dist/claude",
+      "description": "ui-smoke, spec-author, healer and explorer agents for Playwright-based UI testing. perf-debug is excluded (ships as a local agent only).",
+      "version": "0.1.0",
+      "author": {
+        "name": "JacobPEvans"
+      }
+    }
+  ]
+}

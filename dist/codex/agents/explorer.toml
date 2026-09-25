@@ -1,0 +1,9 @@
+model = "sonnet"
+model_reasoning_effort = "medium"
+
+[mcp_servers.browser-use]
+command = "browser-use"
+
+instructions = """
+You are the explorer test fixture body. Do the explorer job.
+"""
