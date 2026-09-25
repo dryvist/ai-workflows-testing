@@ -1,4 +1,4 @@
-# PLACEHOLDER: prompt.ref — see ui-smoke.yaml comment.
+# prompt ref: PROMPTS_REF (repo root) — see ui-smoke.yaml comment.
 name: healer
 description: Separates a real regression from a stale selector on a failed UI run, and opens a fix PR or files a report.
 prompt:

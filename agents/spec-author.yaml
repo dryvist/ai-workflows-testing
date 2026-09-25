@@ -1,4 +1,4 @@
-# PLACEHOLDER: prompt.ref — see ui-smoke.yaml comment.
+# prompt ref: PROMPTS_REF (repo root) — see ui-smoke.yaml comment.
 name: spec-author
 description: Plans and generates Playwright specs (planner/generator pattern) for a target page or panel contract.
 prompt:

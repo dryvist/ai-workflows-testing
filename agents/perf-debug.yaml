@@ -1,4 +1,4 @@
-# PLACEHOLDER: prompt.ref — see ui-smoke.yaml comment.
+# prompt ref: PROMPTS_REF (repo root) — see ui-smoke.yaml comment.
 # local: true — ships only as a local Claude agent (delivered by nix-ai),
 # never through the testing-agents plugin: Claude plugin agents ignore
 # mcpServers (S2 finding), and this agent needs the Chrome DevTools MCP.
