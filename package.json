@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "dependencies": {
+    "yaml": "^2.8.1"
+  },
+  "scripts": {
+    "test": "bun test",
+    "render": "bun scripts/render.mjs"
+  }
+}
