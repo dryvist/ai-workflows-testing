@@ -1,8 +1,8 @@
 # Reusable: live UI specs against a real target, through the UI check
 # Authelia identity (real TOTP 2FA, code minted by OpenBao — never a stored
 # seed). Self-hosted only, on the dedicated `uicheck` runner group. The
-# CALLER decides its own triggers; this file only refuses pull_request (see
-# the guard step) — a self-hosted runner must never execute untrusted
+# CALLER decides its own triggers; this file only refuses pull_request (via
+# the live job's `if:`) — a self-hosted runner must never execute untrusted
 # fork-PR code. Document callers as schedule / workflow_dispatch / release.
 #
 # No hostname or catalog data lives here: the caller passes the target URL,
@@ -82,23 +82,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # A self-hosted runner must never run an untrusted fork's code. schedule,
-  # workflow_dispatch and release are all repository-owner-controlled
-  # triggers; pull_request is the one this file refuses outright.
-  guard-trigger:
-    name: Refuse pull_request on self-hosted
-    runs-on: ubuntu-latest
-    timeout-minutes: 2
-    steps:
-      - name: Reject pull_request
-        if: github.event_name == 'pull_request'
-        run: |
-          echo "::error::_ui-live.yml must never be triggered by pull_request (self-hosted runner)." >&2
-          exit 1
-
   live:
     name: Playwright specs (live, UI check login)
-    needs: guard-trigger
+    # A self-hosted runner must never run an untrusted fork's code. schedule,
+    # workflow_dispatch and release are all repository-owner-controlled
+    # triggers; pull_request is the one this job refuses outright.
+    if: github.event_name != 'pull_request'
     runs-on: [self-hosted, "${{ inputs.runner_group }}"]
     timeout-minutes: 20
     defaults:
