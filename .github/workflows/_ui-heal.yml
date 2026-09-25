@@ -1,0 +1,118 @@
+# Reusable: the healer. Runs after a _ui-specs or _ui-live failure and
+# classifies it: a stale selector gets a fix PR from the healer agent; a
+# real regression gets nothing here (the caller's own follow-up job files
+# Vikunja/Zammad — this workflow only classifies and, when it can, fixes).
+#
+# Agent choice mirrors dryvist/ai-workflows' run-ai-agent composite: the org
+# variable GH_ACTION_AI_AGENT picks claude or codex, both pointed at the
+# shared model router. The claude path additionally scopes the
+# testing-agents plugin (marketplace in this repo) so the healer agent
+# loads — claude-code-action's generic default carries no agent definitions.
+#
+# Caller shape:
+#   jobs:
+#     ui-heal:
+#       if: failure()
+#       needs: [ui-specs]
+#       uses: dryvist/ai-workflows-testing/.github/workflows/_ui-heal.yml@main
+#       with:
+#         failure_context: "ui-specs failed on PR #${{ github.event.pull_request.number }}"
+#       secrets: inherit
+name: _ui-heal
+
+on:
+  workflow_call:
+    inputs:
+      failure_context:
+        description: What failed and where (run URL, test names) — no topology, no hostnames.
+        type: string
+        required: true
+      runner_label:
+        type: string
+        required: false
+        default: ubuntu-latest
+    secrets:
+      LLM_ROUTER_BASE_URL:
+        required: true
+      LLM_ROUTER_API_KEY:
+        required: true
+      GH_APP_CLAUDE_BOT_ID:
+        required: false
+      GH_APP_CLAUDE_BOT_PRIVATE_KEY:
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ui-heal-${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  heal:
+    name: Classify and heal
+    runs-on: ${{ inputs.runner_label }}
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Checkout testing-agents plugin
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          repository: dryvist/ai-workflows-testing
+          ref: ${{ job.workflow_sha || 'main' }}
+          path: .testing-agents
+          persist-credentials: false
+
+      - name: Render healer prompt
+        id: prompt
+        env:
+          FAILURE_CONTEXT: ${{ inputs.failure_context }}
+        run: bash .testing-agents/.github/scripts/render-heal-prompt.sh
+
+      - name: Run Codex healer
+        id: codex
+        if: vars.GH_ACTION_AI_AGENT == 'codex'
+        uses: openai/codex-action@86365089eb2b84e0a8fb0717b304f8bdcb13b20e # v1.12
+        env:
+          GH_TOKEN: ${{ github.token }}
+        with:
+          prompt: ${{ steps.prompt.outputs.content }}
+          openai-api-key: ${{ secrets.LLM_ROUTER_API_KEY }}
+          responses-api-endpoint: ${{ secrets.LLM_ROUTER_BASE_URL }}/responses
+          permission-profile: workspace
+          codex-home: .testing-agents/dist/codex
+          allow-bots: "true"
+          allow-bot-users: github-actions
+
+      - name: Mint Claude bot token
+        id: claude-token
+        if: vars.GH_ACTION_AI_AGENT != 'codex'
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3
+        with:
+          app-id: ${{ vars.GH_APP_CLAUDE_BOT_ID }}
+          private-key: ${{ secrets.GH_APP_CLAUDE_BOT_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Run Claude healer (testing-agents plugin)
+        id: claude
+        if: vars.GH_ACTION_AI_AGENT != 'codex'
+        uses: anthropics/claude-code-action@be7b93b1907a4abad570368f3c74b6fe3807510b # v1
+        env:
+          ANTHROPIC_BASE_URL: ${{ secrets.LLM_ROUTER_BASE_URL }}
+        with:
+          github_token: ${{ steps.claude-token.outputs.token || github.token }}
+          anthropic_api_key: ${{ secrets.LLM_ROUTER_API_KEY }}
+          allowed_bots: github-actions
+          use_commit_signing: "false"
+          prompt: ${{ steps.prompt.outputs.content }}
+          plugin_marketplaces: .testing-agents/.claude-plugin/marketplace.json
+          plugins: testing-agents

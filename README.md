@@ -16,7 +16,7 @@ testing agents.
   plugin, built from `dist/claude/agents`.
 - `.github/workflows/_ui-specs.yml`, `_ui-live.yml`, `_ui-heal.yml` —
   reusable workflows a target repo calls to run fixture specs, live
-  synthetic-login specs, and the failure healer.
+  UI check login specs, and the failure healer.
 - `specs/` — estate-wide specs that belong to no single app.
 
 ## Agents

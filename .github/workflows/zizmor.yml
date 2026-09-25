@@ -1,0 +1,15 @@
+name: Workflow Security
+
+on:
+  pull_request:
+    paths: [".github/workflows/**"]
+  push:
+    branches: [main, develop]
+    paths: [".github/workflows/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  zizmor:
+    uses: dryvist/.github/.github/workflows/_zizmor.yml@main
