@@ -24,14 +24,14 @@ jobs:
     with:
       target_url: ${{ vars.WALL_URL }}
       openbao_jwt_audience: ${{ vars.OPENBAO_JWT_AUDIENCE }}
-      openbao_password_path: secret/data/synthetic/svc-synthetic-ui
-      openbao_totp_path: totp/code/svc-synthetic-ui
+      openbao_password_path: secret/data/uicheck/svc-uicheck
+      openbao_totp_path: totp/code/svc-uicheck
     secrets:
       OPENBAO_ADDR: ${{ secrets.OPENBAO_ADDR }}
 ```
 
 Needs a `playwright.live.config.ts` in the caller repo, and the caller's
-runner must be a member of the `ui-synthetic` self-hosted runner group.
+runner must be a member of the `uicheck` self-hosted runner group.
 
 ## Adding the healer on failure
 

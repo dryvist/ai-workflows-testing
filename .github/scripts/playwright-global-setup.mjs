@@ -1,5 +1,5 @@
 // Playwright globalSetup for _ui-live.yml: logs in through Authelia once
-// with the synthetic identity (password + a TOTP code minted by OpenBao,
+// with the UI check identity (password + a TOTP code minted by OpenBao,
 // never a stored seed) and saves storageState for every project to reuse.
 // Selectors are Authelia's own login form (id-prefixed, stable across
 // themes). No hostname is hardcoded — UI_LIVE_URL is an input/env value.

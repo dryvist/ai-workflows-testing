@@ -1,6 +1,6 @@
-# Reusable: live UI specs against a real target, through the synthetic
+# Reusable: live UI specs against a real target, through the UI check
 # Authelia identity (real TOTP 2FA, code minted by OpenBao — never a stored
-# seed). Self-hosted only, on the dedicated `ui-synthetic` runner group. The
+# seed). Self-hosted only, on the dedicated `uicheck` runner group. The
 # CALLER decides its own triggers; this file only refuses pull_request (see
 # the guard step) — a self-hosted runner must never execute untrusted
 # fork-PR code. Document callers as schedule / workflow_dispatch / release.
@@ -14,9 +14,9 @@
 #       uses: dryvist/ai-workflows-testing/.github/workflows/_ui-live.yml@main
 #       with:
 #         target_url: ${{ vars.WALL_URL }}
-#         openbao_role: ui-synthetic
-#         openbao_password_path: secret/data/synthetic/svc-synthetic-ui
-#         openbao_totp_path: totp/code/svc-synthetic-ui
+#         openbao_role: uicheck
+#         openbao_password_path: secret/data/uicheck/svc-uicheck
+#         openbao_totp_path: totp/code/svc-uicheck
 #       secrets:
 #         OPENBAO_ADDR: ${{ secrets.OPENBAO_ADDR }}
 name: _ui-live
@@ -32,7 +32,7 @@ on:
         description: Self-hosted runner group label, restricted to this workflow ref.
         type: string
         required: false
-        default: ui-synthetic
+        default: uicheck
       working_directory:
         description: Directory containing the caller's package.json and Playwright config.
         type: string
@@ -42,7 +42,7 @@ on:
         description: OpenBao JWT role name (bound to this workflow's ref and the runner's source addresses).
         type: string
         required: false
-        default: ui-synthetic
+        default: uicheck
       openbao_jwt_mount:
         description: OpenBao auth mount path for the GitHub OIDC JWT method.
         type: string
@@ -53,12 +53,12 @@ on:
         type: string
         required: true
       openbao_user_var:
-        description: OpenBao KV field holding the synthetic username.
+        description: OpenBao KV field holding the UI check username.
         type: string
         required: false
         default: username
       openbao_password_path:
-        description: OpenBao KV path (secret/data/... for a v2 mount) holding the synthetic password.
+        description: OpenBao KV path (secret/data/... for a v2 mount) holding the UI check password.
         type: string
         required: true
       openbao_password_field:
@@ -97,7 +97,7 @@ jobs:
           exit 1
 
   live:
-    name: Playwright specs (live, synthetic login)
+    name: Playwright specs (live, UI check login)
     needs: guard-trigger
     runs-on: [self-hosted, "${{ inputs.runner_group }}"]
     timeout-minutes: 20
@@ -128,7 +128,7 @@ jobs:
 
       # Mint a short-lived OpenBao token via GitHub OIDC, bound to this
       # workflow's ref and the runner's source address (per the role's
-      # policy — see the synthetic identity docs). exportEnv is false: the
+      # policy — see the UI check identity docs). exportEnv is false: the
       # next step reads exactly the two fields it needs, nothing ambient.
       - name: Mint OpenBao token
         id: openbao
@@ -145,7 +145,7 @@ jobs:
             ${{ inputs.openbao_password_path }} ${{ inputs.openbao_user_var }} | UI_LIVE_USER ;
             ${{ inputs.openbao_totp_path }} code | UI_LIVE_TOTP_CODE
 
-      - name: Run live specs through the synthetic login
+      - name: Run live specs through the UI check login
         env:
           UI_LIVE_URL: ${{ inputs.target_url }}
           UI_LIVE_USER: ${{ steps.openbao.outputs.UI_LIVE_USER }}

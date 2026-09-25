@@ -6,7 +6,7 @@ import {
 
 const FULL_ENV = {
   UI_LIVE_URL: "https://example.invalid/",
-  UI_LIVE_USER: "svc-synthetic-ui",
+  UI_LIVE_USER: "svc-uicheck",
   UI_LIVE_PASSWORD: "hunter2",
   UI_LIVE_TOTP_CODE: "123456",
 };
