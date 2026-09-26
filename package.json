@@ -3,8 +3,14 @@
   "dependencies": {
     "yaml": "^2.8.1"
   },
+  "devDependencies": {
+    "@playwright/test": "latest",
+    "@types/node": "^26.6.2",
+    "typescript": "latest"
+  },
   "scripts": {
     "test": "bun test",
-    "render": "bun scripts/render.mjs"
+    "render": "bun scripts/render.mjs",
+    "typecheck": "tsc --noEmit"
   }
 }

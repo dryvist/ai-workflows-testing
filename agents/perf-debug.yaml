@@ -1,0 +1,18 @@
+# prompt ref: PROMPTS_REF (repo root) — see ui-smoke.yaml comment.
+# local: true — ships only as a local Claude agent (delivered by nix-ai),
+# never through the testing-agents plugin: Claude plugin agents ignore
+# mcpServers (S2 finding), and this agent needs the Chrome DevTools MCP.
+name: perf-debug
+description: Chrome DevTools MCP performance, console and network debugging for a UI target.
+prompt:
+  repo: dryvist/ai-llm-prompts
+  path: automation/testing/perf-debug.md
+model: sonnet
+local: true
+tools:
+  - Bash
+  - Read
+  - Grep
+skills: []
+mcp:
+  - chrome-devtools

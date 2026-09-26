@@ -1,0 +1,15 @@
+# dryvist organization-wide markdownlint canonical, extended for this repo.
+# Base: https://github.com/dryvist/.github/blob/main/.markdownlint-cli2.yaml
+config:
+  MD013:
+    line_length: 160
+    tables: true
+    strict: true
+
+# CHANGELOG.md: same reason as the org default (release-please generated).
+# dist/: rendered by scripts/render.mjs from agent instruction bodies that
+# live in dryvist/ai-llm-prompts and aren't authored to this repo's style —
+# render-drift (tests.yml) is the check that governs dist/, not markdownlint.
+ignores:
+  - "CHANGELOG.md"
+  - "dist/**"

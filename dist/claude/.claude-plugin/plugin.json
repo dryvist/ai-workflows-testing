@@ -1,0 +1,11 @@
+{
+  "name": "testing-agents",
+  "version": "0.1.0",
+  "description": "UI testing agents: ui-smoke, spec-author, healer, explorer.",
+  "agents": [
+    "./agents/explorer.md",
+    "./agents/healer.md",
+    "./agents/spec-author.md",
+    "./agents/ui-smoke.md"
+  ]
+}

@@ -28,7 +28,7 @@ manages `package.json` and pinned action SHAs.
   never an unpinned tag.
 - No inline `run: |` logic beyond one command invoking a tested script file.
 - `_ui-live.yml` runs only on `schedule`, `workflow_dispatch` and `release` —
-  never `pull_request` — and targets the `ui-synthetic` self-hosted runner
+  never `pull_request` — and targets the `uicheck` self-hosted runner
   group. It reads credentials from OpenBao by path; no secret value is ever
   hardcoded or logged.
 - No hostnames or IPs in this repo. Callers pass the target URL and catalog

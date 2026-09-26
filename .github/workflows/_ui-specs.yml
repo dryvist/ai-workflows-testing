@@ -1,0 +1,67 @@
+# Reusable: fixture-mode UI specs (Playwright, hosted runner).
+#
+# Runs the calling repo's own Playwright suite against its fixture data —
+# no live target, no credentials. Caller shape:
+#
+#   jobs:
+#     ui-specs:
+#       uses: dryvist/ai-workflows-testing/.github/workflows/_ui-specs.yml@main
+name: _ui-specs
+
+on:
+  workflow_call:
+    inputs:
+      runner_label:
+        description: >-
+          GitHub Actions runner label. Defaults to ubuntu-latest.
+        type: string
+        required: false
+        default: ubuntu-latest
+      working_directory:
+        description: Directory containing the caller's package.json and Playwright config.
+        type: string
+        required: false
+        default: "."
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ui-specs-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  specs:
+    name: Playwright specs (fixture)
+    runs-on: ${{ inputs.runner_label }}
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: ${{ inputs.working_directory }}
+    steps:
+      - name: Checkout caller repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: ${{ inputs.working_directory }}/package-lock.json
+
+      - run: npm ci
+
+      - run: npx playwright install chromium --with-deps
+
+      - run: npx playwright test
+
+      - name: Upload Playwright report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: playwright-report
+          path: |
+            ${{ inputs.working_directory }}/playwright-report/
+            ${{ inputs.working_directory }}/test-results/
+          retention-days: 14
