@@ -1,0 +1,16 @@
+name: Nested Ref Probe
+
+on:
+  pull_request:
+
+permissions: {}
+
+jobs:
+  gate:
+    permissions:
+      contents: read
+      pull-requests: read
+      actions: write
+    uses: dryvist/.github/.github/workflows/_ci-gate.yml@e9ce3de40358d6666acb85971d685a59e1b17a73
+    with:
+      profile: docs
