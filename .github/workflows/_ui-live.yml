@@ -11,7 +11,7 @@
 # Caller shape:
 #   jobs:
 #     ui-live:
-#       uses: dryvist/ai-workflows-testing/.github/workflows/_ui-live.yml@main
+#       uses: dryvist/ai-workflows-testing/.github/workflows/_ui-live.yml@<40-hex commit SHA> # vX.Y.Z
 #       with:
 #         target_url: ${{ vars.WALL_URL }}
 #         openbao_role: uicheck
