@@ -10,4 +10,4 @@ permissions:
 
 jobs:
   file-size:
-    uses: dryvist/.github/.github/workflows/_file-size.yml@main
+    uses: dryvist/.github/.github/workflows/_file-size.yml@v1
