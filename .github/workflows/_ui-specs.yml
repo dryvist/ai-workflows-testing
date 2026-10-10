@@ -5,7 +5,7 @@
 #
 #   jobs:
 #     ui-specs:
-#       uses: dryvist/ai-workflows-testing/.github/workflows/_ui-specs.yml@main
+#       uses: dryvist/ai-workflows-testing/.github/workflows/_ui-specs.yml@<40-hex commit SHA> # vX.Y.Z
 name: _ui-specs
 
 on:
