@@ -9,7 +9,7 @@ file map.
 ```yaml
 jobs:
   ui-specs:
-    uses: dryvist/ai-workflows-testing/.github/workflows/_ui-specs.yml@main
+    uses: dryvist/ai-workflows-testing/.github/workflows/_ui-specs.yml@<40-hex-sha> # vX.Y.Z
 ```
 
 Your repo needs its own `package.json` with `@playwright/test`, a Playwright
@@ -20,7 +20,7 @@ config, and a `tests/` suite (or set `working_directory`).
 ```yaml
 jobs:
   ui-live:
-    uses: dryvist/ai-workflows-testing/.github/workflows/_ui-live.yml@main
+    uses: dryvist/ai-workflows-testing/.github/workflows/_ui-live.yml@<40-hex-sha> # vX.Y.Z
     with:
       target_url: ${{ vars.WALL_URL }}
       openbao_jwt_audience: ${{ vars.OPENBAO_JWT_AUDIENCE }}
@@ -40,7 +40,7 @@ jobs:
   ui-heal:
     if: failure()
     needs: [ui-specs]
-    uses: dryvist/ai-workflows-testing/.github/workflows/_ui-heal.yml@main
+    uses: dryvist/ai-workflows-testing/.github/workflows/_ui-heal.yml@<40-hex-sha> # vX.Y.Z
     with:
       failure_context: "ui-specs failed: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
     secrets: inherit
