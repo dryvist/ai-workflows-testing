@@ -24,7 +24,7 @@ manages `package.json` and pinned action SHAs.
 ## Workflow conventions
 
 - Reusable workflows only call other reusables by pinned ref
-  (`dryvist/.github/.github/workflows/_*.yml@<40-hex-sha> # vX.Y.Z`) or a pinned action SHA —
+  (`JacobPEvans/.github/.github/workflows/_ci-gate.yml@v1`) or a pinned action SHA —
   never an unpinned tag.
 - No inline `run: |` logic beyond one command invoking a tested script file.
 - `_ui-live.yml` runs only on `schedule`, `workflow_dispatch` and `release` —

@@ -42,7 +42,7 @@ git diff --exit-code dist/   # same check CI's render-drift job runs
 ```yaml
 jobs:
   ui-specs:
-    uses: dryvist/ai-workflows-testing/.github/workflows/_ui-specs.yml@<40-hex-sha> # vX.Y.Z
+    uses: <owner>/ai-workflows-testing/.github/workflows/_ui-specs.yml@<40-hex-sha> # vX.Y.Z
 ```
 
 See `.github/workflows/_ui-specs.yml`, `_ui-live.yml` and `_ui-heal.yml` for
