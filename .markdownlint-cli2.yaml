@@ -1,5 +1,5 @@
 # dryvist organization-wide markdownlint canonical, extended for this repo.
-# Base: https://github.com/dryvist/.github/blob/main/.markdownlint-cli2.yaml
+# Base: https://github.com/JacobPEvans/.github/blob/main/.markdownlint-cli2.yaml
 config:
   MD013:
     line_length: 160

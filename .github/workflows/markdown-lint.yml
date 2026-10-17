@@ -12,4 +12,4 @@ permissions:
 
 jobs:
   markdown-lint:
-    uses: dryvist/.github/.github/workflows/_markdown-lint.yml@3d5ae6608afc2e30760499415a29b8e1edfe0ad7 # v1.13.0
+    uses: JacobPEvans/.github/.github/workflows/_markdown-lint.yml@v1

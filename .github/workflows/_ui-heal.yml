@@ -3,7 +3,7 @@
 # real regression gets nothing here (the caller's own follow-up job files
 # Vikunja/Zammad — this workflow only classifies and, when it can, fixes).
 #
-# Agent choice mirrors dryvist/ai-workflows' run-ai-agent composite: the org
+# Agent choice mirrors JacobPEvans/.github-ai' run-ai-agent composite: the org
 # variable GH_ACTION_AI_AGENT picks claude or codex, both pointed at the
 # shared model router. The claude path additionally scopes the
 # testing-agents plugin (marketplace in this repo) so the healer agent
@@ -14,7 +14,7 @@
 #     ui-heal:
 #       if: failure()
 #       needs: [ui-specs]
-#       uses: dryvist/ai-workflows-testing/.github/workflows/_ui-heal.yml@<40-hex commit SHA> # vX.Y.Z
+#       uses: <owner>/ai-workflows-testing/.github/workflows/_ui-heal.yml@<40-hex commit SHA> # vX.Y.Z
 #       with:
 #         failure_context: "ui-specs failed on PR #${{ github.event.pull_request.number }}"
 #       secrets: inherit

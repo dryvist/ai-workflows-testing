@@ -12,4 +12,4 @@ permissions:
 
 jobs:
   zizmor:
-    uses: dryvist/.github/.github/workflows/_zizmor.yml@3d5ae6608afc2e30760499415a29b8e1edfe0ad7 # v1.13.0
+    uses: JacobPEvans/.github/.github/workflows/_zizmor.yml@v1
