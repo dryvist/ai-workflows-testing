@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.3.0](https://github.com/dryvist/ai-workflows-testing/compare/v0.2.1...v0.3.0) (2026-10-31)
+
+
+### Features
+
+* add specialist acceptance fixtures ([f645067](https://github.com/dryvist/ai-workflows-testing/commit/f6450678c04372d67767c574afba6a1ab01a6c42))
+* add specialist acceptance fixtures ([#34](https://github.com/dryvist/ai-workflows-testing/issues/34)) ([cf60af2](https://github.com/dryvist/ai-workflows-testing/commit/cf60af22b7c6ad474ca7faef5b95d7f6c6b37e9e))
+
+
+### Bug Fixes
+
+* align pinned action version annotation ([4fe39fe](https://github.com/dryvist/ai-workflows-testing/commit/4fe39fea631ec2da4706dd449c5495959f254371))
+* bound fixture CI to the required timeout ([9dda777](https://github.com/dryvist/ai-workflows-testing/commit/9dda777347267fc680621b641690654eac1e730e))
+
 ## [0.2.1](https://github.com/dryvist/ai-workflows-testing/compare/v0.2.0...v0.2.1) (2026-10-24)
 
 
