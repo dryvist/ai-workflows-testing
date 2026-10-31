@@ -1,0 +1,15 @@
+{
+  "safe": [
+    "fixture run completed",
+    "worker status changed to done",
+    "authorization header omitted"
+  ],
+  "sentinelMarkers": [
+    "Set-Cookie: session=SESSION_SENTINEL",
+    "{\"headers\":{\"Cookie\":\"session=SESSION_SENTINEL\"}}",
+    "cookie=session=SESSION_SENTINEL",
+    "{\"headers\":{\"authorization\":\"Bearer TOKEN_SENTINEL\"}}",
+    "request query access_token=TOKEN_SENTINEL",
+    "refresh_token=TOKEN_SENTINEL"
+  ]
+}

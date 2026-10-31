@@ -18,6 +18,9 @@ testing agents.
   reusable workflows a target repo calls to run fixture specs, live
   UI check login specs, and the failure healer.
 - `specs/` — estate-wide specs that belong to no single app.
+- `specs/specialist-acceptance/` — vendor-native request fixtures, response
+  fixtures, and an isolated Playwright config; see
+  `docs/SPECIALIST-ACCEPTANCE.md` for the 16-row matrix and proof limits.
 
 ## Agents
 

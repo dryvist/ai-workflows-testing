@@ -1,0 +1,51 @@
+{
+  "sendMessage": {
+    "jsonrpc": "2.0",
+    "id": "fixture-rpc-send",
+    "result": {
+      "task": {
+        "id": "task-fixture-1",
+        "contextId": "context-fixture-1",
+        "status": {
+          "state": "TASK_STATE_COMPLETED",
+          "timestamp": "2030-01-01T00:00:00Z",
+          "message": {
+            "role": "ROLE_AGENT",
+            "parts": [{ "text": "fixture-result", "mediaType": "text/plain" }],
+            "messageId": "agent-message-fixture-1",
+            "contextId": "context-fixture-1"
+          }
+        },
+        "artifacts": [
+          {
+            "artifactId": "artifact-fixture-1",
+            "parts": [{ "text": "fixture-result", "mediaType": "text/plain" }]
+          }
+        ]
+      }
+    }
+  },
+  "getTask": {
+    "jsonrpc": "2.0",
+    "id": "fixture-rpc-get",
+    "result": {
+      "id": "task-fixture-1",
+      "contextId": "context-fixture-1",
+      "status": {
+        "state": "TASK_STATE_COMPLETED",
+        "timestamp": "2030-01-01T00:00:00Z"
+      },
+      "artifacts": [
+        {
+          "artifactId": "artifact-fixture-1",
+          "parts": [{ "text": "fixture-result", "mediaType": "text/plain" }]
+        }
+      ]
+    }
+  },
+  "rpcError": {
+    "jsonrpc": "2.0",
+    "id": "fixture-rpc-error",
+    "error": { "code": -32602, "message": "Invalid params" }
+  }
+}

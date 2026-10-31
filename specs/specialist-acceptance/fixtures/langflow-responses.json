@@ -1,0 +1,31 @@
+{
+  "completedRun": {
+    "session_id": "fixture-session",
+    "outputs": [
+      {
+        "inputs": { "input_value": "Return the fixture marker." },
+        "outputs": [
+          {
+            "results": {
+              "message": {
+                "text": "fixture-result",
+                "session_id": "fixture-session",
+                "flow_id": "fixture-flow",
+                "sender": "Machine"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "validationError": {
+    "detail": [
+      {
+        "loc": ["body", "input_request", "input_value"],
+        "msg": "Field required",
+        "type": "missing"
+      }
+    ]
+  }
+}
