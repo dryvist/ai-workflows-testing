@@ -105,7 +105,7 @@ jobs:
       - name: Run Claude healer (testing-agents plugin)
         id: claude
         if: vars.GH_ACTION_AI_AGENT != 'codex'
-        uses: anthropics/claude-code-action@be7b93b1907a4abad570368f3c74b6fe3807510b # v1
+        uses: anthropics/claude-code-action@be7b93b1907a4abad570368f3c74b6fe3807510b # v1.0.183
         env:
           ANTHROPIC_BASE_URL: ${{ secrets.LLM_ROUTER_BASE_URL }}
         with:
