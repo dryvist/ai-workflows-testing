@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.1](https://github.com/dryvist/ai-workflows-testing/compare/v0.3.0...v0.3.1) (2026-10-31)
+
+
+### Bug Fixes
+
+* use read-only cache access for rendering ([dcb1880](https://github.com/dryvist/ai-workflows-testing/commit/dcb1880615fc01bae1d5ada3d33e0bb8eff0ac81))
+* use read-only cache access for rendering ([#36](https://github.com/dryvist/ai-workflows-testing/issues/36)) ([d77fd25](https://github.com/dryvist/ai-workflows-testing/commit/d77fd250f61b52d3c56d23c45af6a27621862ad0))
+
 ## [0.3.0](https://github.com/dryvist/ai-workflows-testing/compare/v0.2.1...v0.3.0) (2026-10-31)
 
 
