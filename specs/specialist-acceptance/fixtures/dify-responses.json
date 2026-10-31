@@ -1,0 +1,36 @@
+{
+  "blockingRun": {
+    "data": {
+      "created_at": 1705407629,
+      "elapsed_time": 1.23,
+      "error": null,
+      "finished_at": 1705407630,
+      "id": "44444444-4444-4444-8444-444444444444",
+      "outputs": { "result": "fixture-result" },
+      "status": "succeeded",
+      "total_steps": 3,
+      "total_tokens": 0,
+      "workflow_id": "55555555-5555-4555-8555-555555555555"
+    },
+    "task_id": "66666666-6666-4666-8666-666666666666",
+    "workflow_run_id": "44444444-4444-4444-8444-444444444444"
+  },
+  "runDetail": {
+    "created_at": 1705407629,
+    "elapsed_time": 1.23,
+    "error": null,
+    "finished_at": 1705407630,
+    "id": "44444444-4444-4444-8444-444444444444",
+    "inputs": "{\"query\": \"Return the fixture marker.\"}",
+    "outputs": { "result": "fixture-result" },
+    "status": "succeeded",
+    "total_steps": 3,
+    "total_tokens": 0,
+    "workflow_id": "55555555-5555-4555-8555-555555555555"
+  },
+  "unauthorized": {
+    "code": "unauthorized",
+    "message": "Access token is invalid",
+    "status": 401
+  }
+}

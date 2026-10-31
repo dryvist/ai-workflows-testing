@@ -1,0 +1,24 @@
+{
+  "receipt": {
+    "data": {
+      "runId": "11111111-1111-4111-8111-111111111111",
+      "statusUrl": "https://sim.fixture.invalid/api/v2/workflows/fixture-workflow/runs/11111111-1111-4111-8111-111111111111"
+    }
+  },
+  "completedRun": {
+    "data": {
+      "runId": "11111111-1111-4111-8111-111111111111",
+      "workflowId": "fixture-workflow",
+      "status": "completed",
+      "output": { "result": "fixture-result" }
+    }
+  },
+  "failedRun": {
+    "data": {
+      "runId": "11111111-1111-4111-8111-111111111111",
+      "workflowId": "fixture-workflow",
+      "status": "failed",
+      "error": { "code": "FIXTURE_FAILURE", "message": "fixture failure" }
+    }
+  }
+}
