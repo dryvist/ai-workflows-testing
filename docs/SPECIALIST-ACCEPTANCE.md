@@ -2,7 +2,7 @@
 type: Acceptance Specification
 title: Specialist acceptance suite
 description: Fixture-only native request and response checks plus the candidate evaluation matrix.
-timestamp: 2026-11-01T03:11:41Z
+timestamp: 2026-11-01T03:16:57Z
 ---
 
 The fixture suite prepares native HTTP contract checks for Sim, Langflow, Dify,
@@ -64,7 +64,7 @@ fixture mode. Fixture status records only B2 assertion coverage.
 | Scheduling | Isolated restart; one run or documented coalescing/misfire | `NOT_RUN` | `NOT_RUN` |
 | Queue | Accept before failure; record persisted native attempt ID, explicit retry outcome, and effect readback | `NOT_RUN` | `NOT_RUN` |
 | Worker failure | Kill worker after acceptance; record persisted native attempt ID, explicit retry outcome, and effect readback | `NOT_RUN` | `NOT_RUN` |
-| Ambiguous write | Lose reply after accepted write; explicitly retry and use effect readback to verify one logical effect | `NOT_RUN` | `NOT_RUN` |
+| Ambiguous write | After lost reply, reconcile by native ID/readback before retry; record retry outcome or skip disposition | `NOT_RUN` | `NOT_RUN` |
 | Authority | Reject bad repo/args/grant/replay/caller; check known fixture markers | `PASS` — marker assertion only | `NOT_RUN` |
 | Read-only role | Read passes; actual boundary rejects write without mutation | `NOT_RUN` | `NOT_RUN` |
 | Local models | Deterministic action/result route with no cloud fallback | `NOT_RUN` | `NOT_RUN` |
@@ -89,13 +89,15 @@ These observations do not add matrix rows, thresholds, or a winner rule.
 - **Human decision turns:** Count each point where the candidate pauses for a
   human choice or approval. Identify required approvals in a separate field.
 - **Avoidable notifications:** Count notifications that neither request a
-  decision or action nor report a required state change. Record uncertain cases
-  as unknown, not as zero.
+  decision or action, report a required state change, nor convey a new usable
+  result. Record uncertain cases as unknown, not as zero.
 - **Lines of code written:** Count nonblank, noncomment executable lines added
   or changed. State included file types and how generated files are handled.
 - **Edits for one shared skill change:** Apply the same single skill change
-  across the declared scope and count the distinct file edits needed to
-  propagate it. List the edited locations.
+  across the declared scope and count each independently authored UI edit, API
+  resource edit, or file edit. List each edit and location; count generated
+  serialization separately, and do not collapse multiple authored edits into
+  one because they appear in one exported file.
 - **Duplicated expertise left over:** After that skill change, count in-scope
   locations that still repeat the same guidance outside the shared skill. List
   the locations and any unreviewed areas.
@@ -104,14 +106,15 @@ These observations do not add matrix rows, thresholds, or a winner rule.
 
 For Queue and Worker failure, record the accepted action and persisted native
 attempt ID before the controlled restart or worker kill. For Ambiguous write,
-let an accepted remote action lose its reply, then use its native attempt ID
-and external-effect readback to reconcile acceptance. Record the native IDs,
-failure point, explicit retry request and outcome or disposition,
-deduplication evidence, and external-effect readback in the approved receipt.
-An explicit retry is sufficient recovery evidence; automatic resume of the
-last step is not required. These are manual candidate proofs: the B2 fixtures
-provide response shapes and marker assertions, not fault simulation or
-candidate recovery evidence.
+let an accepted remote action lose its reply, then reconcile its native attempt
+ID with external-effect readback before any retry. If readback shows the action
+completed, record `retry-skipped/already-completed` as the disposition;
+otherwise, record any explicit retry and its outcome. Capture native IDs, failure point,
+deduplication evidence, and readback in the approved receipt. An explicit
+retry is sufficient recovery evidence for Queue and Worker failure; automatic
+resume of the last step is not required. These are manual candidate proofs:
+the B2 fixtures provide response shapes and marker assertions, not fault
+simulation or candidate recovery evidence.
 
 ## Native fixture sources
 
