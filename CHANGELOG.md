@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/dryvist/ai-workflows-testing/compare/v0.3.1...v0.4.0) (2026-11-01)
+
+
+### Features
+
+* expand specialist evaluation evidence ([781e30b](https://github.com/dryvist/ai-workflows-testing/commit/781e30b5b4bd9b70cab0edbfa8218d015818ee99))
+
 ## [0.3.1](https://github.com/dryvist/ai-workflows-testing/compare/v0.3.0...v0.3.1) (2026-10-31)
 
 
