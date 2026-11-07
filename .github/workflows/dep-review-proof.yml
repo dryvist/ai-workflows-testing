@@ -1,0 +1,26 @@
+---
+# Test caller: runs the dependency review from a pinned .github-ai commit.
+name: Dep Review Proof
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions: {}
+
+jobs:
+  dep-review:
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+    uses: JacobPEvans/.github-ai/.github/workflows/cc-dep-review.yml@757fb58a84a5eedb0e09dc0ad53cbded2e44eeea
+    with:
+      runner_label: review
+      review_runner_label: review
+      bot_authors: "jacobpevans-claude[bot]"
+    secrets:
+      LLM_ROUTER_BASE_URL: ${{ secrets.LLM_ROUTER_BASE_URL }}
+      LLM_ROUTER_API_KEY: ${{ secrets.LLM_ROUTER_API_KEY }}
+      LLM_ROUTER_OSS_API_KEY: ${{ secrets.LLM_ROUTER_OSS_API_KEY }}
+      GH_APP_CLAUDE_BOT_PRIVATE_KEY: ${{ secrets.GH_APP_CLAUDE_BOT_PRIVATE_KEY }}
