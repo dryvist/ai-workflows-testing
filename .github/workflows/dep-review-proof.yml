@@ -14,7 +14,7 @@ jobs:
       contents: read
       id-token: write
       pull-requests: write
-    uses: JacobPEvans/.github-ai/.github/workflows/cc-dep-review.yml@757fb58a84a5eedb0e09dc0ad53cbded2e44eeea
+    uses: JacobPEvans/.github-ai/.github/workflows/cc-dep-review.yml@5fc94841045cf7bedba0f626627e228227f0a769
     with:
       runner_label: review
       review_runner_label: review
